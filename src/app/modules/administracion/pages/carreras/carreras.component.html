@@ -3,7 +3,7 @@
     <div class="col-12">
         <div class="card card-primary">
             <div class="card-header">
-              <h3 class="card-title">Nueva Carrera</h3>
+              <h3 class="card-title">Formulario Carreras</h3>
             </div>
             <form [formGroup]="form" novalidate (ngSubmit)="onSubmit()">
               <div class="card-body">
@@ -39,8 +39,8 @@
   <div class="col-12">
     <app-custom-table
         keyRow="Id"
-        [headers]="['#','Carrera','Abreviatura', 'Estatus', 'Usuario Registra', 'Fecha Registro']"
-        [keys]="['Id','NombreCarrera','Abreviatura','Estatus', 'UsuarioRegistra', 'FechaRegistro']"
+        [headers]="['#','Carrera','Abreviatura', 'Estatus',  'Fecha Registro']"
+        [keys]="['Id','NombreCarrera','Abreviatura','Estatus',  'FechaRegistro']"
         [data]="majorsList"
         [hasSearch]="true"
         [hasEdit]="true"

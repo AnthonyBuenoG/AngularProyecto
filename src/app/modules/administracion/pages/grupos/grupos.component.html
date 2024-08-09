@@ -2,7 +2,7 @@
     <div class="col-12">
         <div class="card card-primary">
             <div class="card-header">
-              <h3 class="card-title">Nuevo Grupo</h3>
+              <h3 class="card-title">Formulario Grupos</h3>
             </div>
             <form [formGroup]="form" novalidate (ngSubmit)="onSubmit()">
               <div class="card-body">
@@ -38,8 +38,8 @@
     <div class="col-12">
       <app-custom-table
           keyRow="Id"
-          [headers]="['#','Grupo','Clave','Estatus', 'Usuario Registra', 'Fecha Registro']"
-          [keys]="['Id','Nombre','Clave','Estatus', 'UsuarioRegistra', 'FechaRegistro']"
+          [headers]="['#','Grupo','Clave','Estatus',  'Fecha Registro']"
+          [keys]="['Id','Nombre','Clave','Estatus',  'FechaRegistro']"
           [data]="groupsList"
           [hasSearch]="true"
           [hasEdit]="true"
