@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>AngularPlantilla</title>
+  <base href="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="stylesheet" href="assets/dist/css/adminlte.css">
+  <link rel="stylesheet" href="assets/dist/plugins/fontawesome-free/css/all.min.css">
+  <script>
+    (function() {
+      var mode = localStorage.getItem('mode') || 'light';
+      var className = mode === 'light' ? '' : 'dark-mode';
+      document.addEventListener('DOMContentLoaded', function() {
+        var body = document.querySelector('body');
+        if (body) {
+          body.className += ' ' + className;
+        }
+      });
+    })();
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body class="hold-transition sidebar-mini sidebar-collapse">
+  <app-root></app-root>
+  <script src="assets/dist/plugins/jquery/jquery.min.js"></script>
+  <script src="assets/dist/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/dist/js/adminlte.min.js"></script>
+  <script src="assets/dist/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+</body>
+</html>

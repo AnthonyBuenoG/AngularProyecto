@@ -1,0 +1,22 @@
+<h1 mat-dialog-title>{{data.title}}</h1>
+<div mat-dialog-content>
+  <form [formGroup]="form">
+    <!-- Una fila por cada field pasado -->
+    <div class="row" *ngFor="let field of data.fields">
+      <mat-form-field class="full-width">
+        <mat-label>{{field.label}}</mat-label>
+        <!-- Se revisa si se trata de un iput o un select -->
+        <ng-container [ngSwitch]="field.type">
+          <input *ngSwitchCase="'input'" matInput [formControlName]="field.formControlName" />
+          <mat-select *ngSwitchCase="'select'" [formControlName]="field.formControlName">
+            <mat-option *ngFor="let option of field.options" [value]="option.value">{{ option.viewValue }}</mat-option>
+          </mat-select>
+        </ng-container>
+      </mat-form-field>
+    </div>
+  </form>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onCancel()">Cancelar</button>
+  <button mat-button (click)="onSave()" cdkFocusInitial>Guardar</button>
+</div>

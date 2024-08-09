@@ -1,0 +1,4 @@
+.imageFondo {
+    background-image: url(../../../assets/dist/image/fondo.jpg);
+    background-size: cover;
+}

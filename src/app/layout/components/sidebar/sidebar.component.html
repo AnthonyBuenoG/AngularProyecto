@@ -1,0 +1,179 @@
+<aside class="main-sidebar sidebar-dark-primary elevation">
+  <a href="#" class="brand-link">
+    <img [src]="images.logo" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+    <span class="brand-text font-weight-light">Angular Plantilla</span>
+  </a>
+
+  <div class="sidebar">
+    <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+      <div class="image">
+        <img [src]="images.userUno" class="img-circle elevation-2" alt="User Image">
+      </div>
+      <div class="info">
+        <a class="d-block">{{user}}</a>
+      </div>
+    </div>
+
+    <div class="form-inline">
+      <div class="input-group" data-widget="sidebar-search">
+        <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
+        <div class="input-group-append">
+          <button class="btn btn-sidebar">
+            <i class="fas fa-search fa-fw"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <nav class="mt-2">
+      <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+        <!-- <li class="nav-header">Acceso rápido</li>
+        <li class="nav-item">
+          <a href="/modulo-dos" class="nav-link">
+            <i class="far fa-circle nav-icon"></i>
+            <p>
+              Modulo Tabla
+            </p>
+          </a>
+        </li> -->
+        <li class="nav-header">Opciones del módulo</li>
+        <li class="nav-item">
+          <a href="/administracion/personas" class="nav-link">
+            <i class="far fa-circle nav-icon"></i>
+            <p>
+              Modulo Personas
+            </p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="/administracion/alumnos" class="nav-link">
+            <i class="far fa-circle nav-icon"></i>
+            <p>
+              Modulo Alumnos
+            </p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="/administracion/profesores" class="nav-link">
+            <i class="far fa-circle nav-icon"></i>
+            <p>
+              Modulo Profesores
+            </p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="/administracion/carreras" class="nav-link">
+            <i class="far fa-circle nav-icon"></i>
+            <p>
+              Modulo Carreras
+            </p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="/administracion/materias" class="nav-link">
+            <i class="far fa-circle nav-icon"></i>
+            <p>
+              Modulo Materias
+            </p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="/administracion/grupos" class="nav-link">
+            <i class="far fa-circle nav-icon"></i>
+            <p>
+              Modulo Grupos
+            </p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="/administracion/gruposAlumnos" class="nav-link">
+            <i class="far fa-circle nav-icon"></i>
+            <p>
+              Modulo Grupos-Alumnos
+            </p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="/administracion/gruposMaterias" class="nav-link">
+            <i class="far fa-circle nav-icon"></i>
+            <p>
+              Modulo Grupos-Materias
+            </p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="/administracion/calificaciones" class="nav-link">
+            <i class="far fa-circle nav-icon"></i>
+            <p>
+              Modulo Calificaciones
+            </p>
+          </a>
+        </li>
+        <li class="nav-header">Opciones de navegación</li>
+          <li class="nav-item">
+            <a href="/home" class="nav-link">
+              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <p>
+                Panel de Control
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon far fa-calendar-alt"></i>
+              <p>
+                Agenda Personal
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fa fa-lock"></i>
+              <p>
+                Cambiar Contraseña
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a (click)="logOut()" class="nav-link">
+              <i class="nav-icon fa fa-door-open"></i>
+              <p>
+                Cerrar Sesión
+              </p>
+            </a>
+          </li>
+      </ul>
+    </nav>
+  </div>
+</aside>
+ <div class="content-wrapper">
+  <section class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <!-- <h1>{{lastRoute}}</h1> -->
+        </div>
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a href="/home">Home</a></li>
+            <ng-container *ngFor="let route of routeName; let last = last">
+              <li class="breadcrumb-item" *ngIf="!last">
+                <a href="/{{route}}">{{route}}</a>
+              </li>
+              <li class="breadcrumb-item active" *ngIf="last">
+                {{route}}
+              </li>
+            </ng-container>
+          </ol>
+        </div>        
+      </div>
+    </div>
+  </section>
+
+  <section class="content">
+    <div class="container-fluid">
+      <router-outlet></router-outlet>
+    </div>
+  </section>
+</div>
+<app-footer></app-footer>

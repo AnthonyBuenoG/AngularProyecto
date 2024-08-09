@@ -1,0 +1,47 @@
+<div class="card card-{{tableHeadColor}}">
+    <div class="card-header">
+        <h3 class="card-title">{{tableHead}}</h3>
+        <div class="card-tools">
+            <div class="row">
+                <ng-container *ngIf="hasExport">
+                    <div class="col-2">
+                        <div class="input-group input-group-sm">
+                            <button class="btn btn-success btn-sm">
+                                <i class="fas fa-file-excel"></i>
+                            </button>
+                        </div>
+                    </div>
+                </ng-container>
+                <ng-container *ngIf="hasSearch">
+                    <div class="col">    
+                        <div class="input-group input-group-sm">
+                            <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
+                        </div>
+                    </div>
+                </ng-container>
+            </div>
+        </div>
+    </div>
+    <div class="card-body table-responsive p-0">
+        <table class="table table-hover text-nowrap">
+            <thead>
+                <tr>
+                  <th *ngFor="let header of headers">{{ header }}</th>
+                  <th *ngIf="hasEdit || hasDelete">Acciones</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let row of data">
+                    <td *ngFor="let key of keys">{{ row[key] }}</td>
+                    <td *ngIf="hasEdit || hasDelete">
+                        <button *ngIf="hasEdit" class="btn btn-warning mr-2" (click)="editRow(row)"><i class="fa fa-edit"></i></button>
+                        <button *ngIf="hasDelete" class="btn btn-danger" (click)="deleteRow(row)"><i class="fa fa-trash"></i></button>
+                    </td>
+                </tr>
+              </tbody>
+        </table>
+    </div>
+    <!-- <div class="card-footer">
+      {{personsList.length}} Registros
+    </div> -->
+</div>

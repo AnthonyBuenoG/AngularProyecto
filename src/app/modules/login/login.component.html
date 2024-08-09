@@ -1,0 +1,43 @@
+<body class="hold-transition login-page imageFondo">
+    <div class="login-box">
+      <div class="card card-outline">
+        <div class="card-header text-center">
+          <a href="#" class="h1">Plantilla | Login</a>
+        </div>
+        <div class="card-body">
+          <p class="login-box-msg">Sign in to start your session</p>
+          <form [formGroup]="form" novalidate (ngSubmit)="onSubmit()">
+            <div class="input-group mb-2">
+              <input type="email" class="form-control" placeholder="Email" formControlName="usuario" placeholder="Usuario" value="correo@gmail.com">
+              <div class="input-group-append">
+                <div class="input-group-text">
+                  <span class="fas fa-envelope"></span>
+                </div>
+              </div>
+            </div>
+            <div class="form-text text-danger text-center" *ngIf="form.get('usuario')?.touched && form.get('usuario')?.invalid">
+              <span *ngIf="form.get('usuario')?.errors?.['required']">Usuario Requerido*</span>
+              <span *ngIf="form.get('usuario')?.errors?.['email']">Correo no válido*</span>
+            </div>
+            <div class="input-group mt-2 mb-2">
+              <input type="password" class="form-control" formControlName="password" placeholder="Password" value="123456789">
+              <div class="input-group-append">
+                <div class="input-group-text">
+                  <span class="fas fa-lock"></span>
+                </div>
+              </div>
+            </div>
+            <div class="form-text text-danger text-center" *ngIf="form.get('password')?.touched && form.get('password')?.invalid">
+              <span *ngIf="form.get('password')?.errors?.['required']">Contraseña Requerida*</span>
+              <span *ngIf="form.get('password')?.errors?.['minlength']">La contraseña debe tener al menos 8 caracteres*</span>
+            </div>
+            <div class="row mt-2">
+              <div class="col-12">
+                <button type="submit" class="btn custom-btn btn-block">Iniciar Sesión</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+</body>
