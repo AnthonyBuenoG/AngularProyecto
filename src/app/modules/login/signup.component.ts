@@ -11,16 +11,16 @@ import { LoginService } from '@Services';
 
 @Component({
   selector: 'app-login',
-  templateUrl: './login.component.html',
+  templateUrl: './signup.html',
   styleUrl: './login.component.css',
   standalone: true,
   imports: [ReactiveFormsModule, NgIf]
 })
-export class LoginComponent {
+export class SignupComponent {
   readonly images = images;
 
   private fb = inject(FormBuilder);
-  private auth = inject(LoginService);
+  private auth = inject(SignupComponent);
   private router = inject(Router);
   private toastr = inject(ToastrService);  
 }

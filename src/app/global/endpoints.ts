@@ -4,6 +4,10 @@ export const auth = {
   login: `${environment.urlBase}SignIn`,
 };
 
+export const authh = {
+  signup: `${environment.urlBase}Signup`,
+};
+
 export const persons = {
   get: `${environment.urlBase}GetPersonas`,
   insert: `${environment.urlBase}InsertPersonas`,
