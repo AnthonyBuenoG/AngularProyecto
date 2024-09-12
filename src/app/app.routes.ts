@@ -1,5 +1,5 @@
 import { Routes } from '@angular/router';
-import { LoginComponent } from './modules/login/login.component';
+import { LoginComponent } from './modules/login/LoginComponent';
 import { HomeComponent } from './layout/components/home/home.component';
 import { NotFoundComponent } from './layout/components/not-found/not-found.component';
 import { AuthGuard } from '@Guards';
@@ -15,6 +15,7 @@ export const routes: Routes = [
     component: HomeComponent,
     // canActivate:[AuthGuard],
     loadChildren: () => import('./modules/dashboard/dashboard.routes').then(m => m.routes),
+
   },
   {
     path: 'administracion',
