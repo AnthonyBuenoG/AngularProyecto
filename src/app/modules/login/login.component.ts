@@ -8,7 +8,7 @@ import { ToastrService } from 'ngx-toastr';
 import { LoginRequest } from '@Models/Auth'
 // Services //
 import { LoginService } from '@Services';
-import { SignupService } from 'src/app/core/services/signup.service';
+//import { SignupService } from 'src/app/core/services/signup.service';
 
 @Component({
   selector: 'app-login',
@@ -22,7 +22,7 @@ export class LoginComponent {
 
   private fb = inject(FormBuilder);
   private auth = inject(LoginService);
-  private authh = inject(SignupService);
+ // private authh = inject(SignupService);
   private router = inject(Router);
   private toastr = inject(ToastrService);  
 }

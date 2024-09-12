@@ -1,9 +1,9 @@
 import { Routes } from '@angular/router';
-import { LoginComponent } from './modules/login/LoginComponent';
+import { LoginComponent } from './modules/login/login.component';
 import { HomeComponent } from './layout/components/home/home.component';
 import { NotFoundComponent } from './layout/components/not-found/not-found.component';
 import { AuthGuard } from '@Guards';
-import { SignupComponent } from './modules/login/signup.component';
+//import { SignupComponent } from './modules/login/signup.component';
 
 export const routes: Routes = [
   {
@@ -22,12 +22,12 @@ export const routes: Routes = [
     // canActivate: [authGuardFn],
     loadChildren: () => import('./modules/administracion/administracion.routes').then(m => m.routes),
   },
-  {
-    path: 'signup',
-    component: SignupComponent,
-    loadChildren: () => import('./modules/login/signup.rotes').then(m => m.routes),
+  // {
+  //   path: 'signup',
+  //   component: SignupComponent,
+  //   loadChildren: () => import('./modules/login/signup.rotes').then(m => m.routes),
 
-  },
+  // },
   {
     path: '',
     redirectTo: 'login',
