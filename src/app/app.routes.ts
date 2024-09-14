@@ -22,12 +22,7 @@ export const routes: Routes = [
     // canActivate: [authGuardFn],
     loadChildren: () => import('./modules/administracion/administracion.routes').then(m => m.routes),
   },
-  // {
-  //   path: 'signup',
-  //   component: SignupComponent,
-  //   loadChildren: () => import('./modules/login/signup.rotes').then(m => m.routes),
 
-  // },
   {
     path: '',
     redirectTo: 'login',

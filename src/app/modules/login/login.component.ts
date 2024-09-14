@@ -3,8 +3,10 @@ import { Component, inject, signal, OnInit } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CustomTableComponent } from '@Component/Table'
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
-import { StudentModel, StudentInsertRequest } from 'src/app/core/models/students';
+import { LoginModel, LoginInsertRequest } from 'src/app/core/models/login';
 import { LoginService } from '@Services';
+
+
 @Component({
   selector: 'app-alumnos',
   standalone: true,
@@ -24,7 +26,7 @@ export class LoginComponent implements OnInit{
   private dialog = inject(MatDialog);
 
   form = this.fb.nonNullable.group({
-    Nombre: ['', Validators.required],
+    Nombres: ['', Validators.required],
     NumeroTelefono: ['', Validators.required],
     Correo: ['', [Validators.required]],
     Contraseña: ['', [Validators.required]],
@@ -32,9 +34,9 @@ export class LoginComponent implements OnInit{
 
   onSubmit(): void {
     if (this.form.valid){
-      const { Nombre, NumeroTelefono, Correo, Contraseña} = this.form.getRawValue();
-      const request: StudentInsertRequest = {
-        Nombre: Nombre,
+      const { Nombres, NumeroTelefono, Correo, Contraseña} = this.form.getRawValue();
+      const request: LoginInsertRequest = {
+        Nombres: Nombres,
         NumeroTelefono: NumeroTelefono,
         Correo: Correo,
         Contraseña: Contraseña,
