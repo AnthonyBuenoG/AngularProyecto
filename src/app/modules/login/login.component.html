@@ -24,11 +24,17 @@
 										<div class="section text-center">
 											<h4 class="mb-4 pb-3">Login</h4>
 											<div class="form-group">
-												<input type="email" class="form-style" placeholder="Email">
+												<input type="email" class="form-style" placeholder="Email" formControlName="Correo">
+												<div class="form-text text-danger text-left" *ngIf="form.get('Correo')?.touched && form.get('Correo')?.invalid">
+													<span *ngIf="form.get('Correo')?.errors?.['required']">El correo es requerido para ingresar*</span>
+												</div>
 												<i class="input-icon uil uil-at"></i>
 											</div>	
 											<div class="form-group mt-2">
-												<input type="password" class="form-style" placeholder="Password">
+												<input type="password" class="form-style" placeholder="Password" formControlName="Contraseña">
+												<div class="form-text text-danger text-left" *ngIf="form.get('Contraseña')?.touched && form.get('Contraseña')?.invalid">
+													<span *ngIf="form.get('Contraseña')?.errors?.['required']">Contraseña requerida para ingresar*</span>
+												</div>
 												<i class="input-icon uil uil-lock-alt"></i>
 											</div>
 											<a href="home" class="btn mt-4">Login</a>
@@ -40,19 +46,31 @@
 										<div class="section text-center">
 											<h4 class="mb-3 pb-3">Sign Up</h4>
 											<div class="form-group">
-												<input type="text" class="form-style" placeholder="Full Name">
+												<input type="text" class="form-style" placeholder="Name" formControlName="Nombres">
+												<div class="form-text text-danger text-left" *ngIf="form.get('Nombres')?.touched && form.get('Nombres')?.invalid">
+													<span *ngIf="form.get('Nombres')?.errors?.['required']">Nombre Usuario Requerido*</span>
+												</div>
 												<i class="input-icon uil uil-user"></i>
 											</div>	
 											<div class="form-group mt-2">
-												<input type="tel" class="form-style" placeholder="Phone Number">
+												<input type="tel" class="form-style" placeholder="Phone Number" formControlName="NumeroTelefono">
+												<div class="form-text text-danger text-left" *ngIf="form.get('NumeorTelefono')?.touched && form.get('NumeroTelefono')?.invalid">
+													<span *ngIf="form.get('NumeroTelefono')?.errors?.['required']">Número de Telefono Requerido*</span>
+												</div>
 												<i class="input-icon uil uil-phone"></i>
 											</div>	
                         					 <div class="form-group mt-2">
-												<input type="email" class="form-style" placeholder="Email">
+												<input type="email" class="form-style" placeholder="Email" formControlName="Correo">
+												<div class="form-text text-danger text-left" *ngIf="form.get('Correo')?.touched && form.get('Correo')?.invalid">
+													<span *ngIf="form.get('Correo')?.errors?.['required']">Correo Requerido*</span>
+												</div>
 												<i class="input-icon uil uil-at"></i>
 											</div>
 											<div class="form-group mt-2">
-												<input type="password" class="form-style" placeholder="Password">
+												<input type="password" class="form-style" placeholder="Password" formControlName="Contraseña">
+												<div class="form-text text-danger text-left" *ngIf="form.get('apPaterno')?.touched && form.get('Contraseña')?.invalid">
+													<span *ngIf="form.get('apPaterno')?.errors?.['required']">Contraseña Requerido*</span>
+												</div>
 												<i class="input-icon uil uil-lock-alt"></i>
 											</div>
 											<a href="login" class="btn mt-4">Register</a>
@@ -66,5 +84,18 @@
 	      	</div>
 	    </div>
 	</div>
+	<div class="row">
+		<div class="col-12">
+		  <app-custom-table
+			  keyRow="Id"
+			  [headers]="['Nombres', 'NumeorTelefono', 'Correo',  'Contraseña']"
+			  [keys]="['Nombres', 'NumeorTelefono', 'Correo',  'Contraseña']"
+			  [data]="loginList"
+			  [hasSearch]="true"
+			  [hasEdit]="true"
+			  [hasDelete]="true">
+		  </app-custom-table>
+		</div>
+	  </div>
 </body>
 </html>

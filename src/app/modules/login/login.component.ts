@@ -20,10 +20,13 @@ import { LoginService } from '@Services';
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
-export class LoginComponent implements OnInit{
+export class LoginComponent {
   private fb = inject(FormBuilder);
   private loginService = inject(LoginService);
   private dialog = inject(MatDialog);
+
+  login = signal<LoginModel[]>([]);
+  loginList: LoginModel[] = [];
 
   form = this.fb.nonNullable.group({
     Nombres: ['', Validators.required],
