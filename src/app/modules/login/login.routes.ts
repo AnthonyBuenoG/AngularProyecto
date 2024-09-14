@@ -1,24 +1,12 @@
 import { Routes } from '@angular/router';
-import { LoginComponent } from './login.component';
-//import { SignupComponent } from './signup.component';
 
 export const routes: Routes = [
-  {
-    path: '',
-    redirectTo: 'login',
-    pathMatch: 'full'
-  },
-  {
-    path: 'login',
-    component: LoginComponent
-  },
-  {
-    path: '',
-    redirectTo: 'signup',
-    pathMatch: 'full'
-  },
-  // {
-  //   path: 'signup',
-  //   component: LoginComponent
-  // }
-];
+    {
+      path: '',
+      loadComponent: () => import('./login.component').then(m => m.LoginComponent)
+    }
+    // {
+    //   path: ':id',
+    //   loadComponent: () => import('./pages/form/form.component')
+    // }
+  ];

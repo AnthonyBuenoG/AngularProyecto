@@ -1,28 +1,44 @@
-import { Component, inject } from '@angular/core';
-import { ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-import { NgIf } from '@angular/common';
-import { images } from '@Constants';
-import { ToastrService } from 'ngx-toastr';
-// Models //
-import { LoginRequest } from '@Models/Auth'
-// Services //
+import { NgFor, NgIf } from '@angular/common';
+import { Component, inject, signal, OnInit } from '@angular/core';
+import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { CustomTableComponent } from '@Component/Table'
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { StudentModel, StudentInsertRequest } from 'src/app/core/models/students';
 import { LoginService } from '@Services';
-//import { SignupService } from 'src/app/core/services/signup.service';
-
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrl: './login.component.css',
+  selector: 'app-alumnos',
   standalone: true,
-  imports: [ReactiveFormsModule, NgIf]
+  imports: [
+    ReactiveFormsModule,
+    NgFor,
+    NgIf,
+    CustomTableComponent,
+    MatDialogModule
+  ],
+  templateUrl: './login.component.html',
+  styleUrl: './login.component.css'
 })
-export class LoginComponent {
-  readonly images = images;
-
+export class LoginComponent implements OnInit{
   private fb = inject(FormBuilder);
-  private auth = inject(LoginService);
- // private authh = inject(SignupService);
-  private router = inject(Router);
-  private toastr = inject(ToastrService);  
+  private loginService = inject(LoginService);
+  private dialog = inject(MatDialog);
+
+  form = this.fb.nonNullable.group({
+    Nombre: ['', Validators.required],
+    NumeroTelefono: ['', Validators.required],
+    Correo: ['', [Validators.required]],
+    Contraseña: ['', [Validators.required]],
+  })
+
+  onSubmit(): void {
+    if (this.form.valid){
+      const { Nombre, NumeroTelefono, Correo, Contraseña} = this.form.getRawValue();
+      const request: StudentInsertRequest = {
+        Nombre: Nombre,
+        NumeroTelefono: NumeroTelefono,
+        Correo: Correo,
+        Contraseña: Contraseña,
+      };
+    } 
+  }
 }
