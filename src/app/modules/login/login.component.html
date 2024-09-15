@@ -8,7 +8,7 @@
 		  <div class="row">
 			<div class="col-12">
 			  <div class="form-group">
-				<label for="Nombres">*Nombres:</label>
+				<label for="Nombres">Nombres:</label>
 				<input type="text" class="form-control" id="Nombres" placeholder="Nombres" formControlName="Nombres"  tabindex="1" (keydown.enter)="nextField('NumeroTelefono')">
 				<div class="form-text text-danger" *ngIf="form.get('Nombres')?.touched && form.get('Nombres')?.invalid">
 				  <span *ngIf="form.get('Nombres')?.errors?.['required']">El nombre es requerido.</span>
@@ -19,7 +19,7 @@
 		  <div class="row">
 			<div class="col-12">
 			  <div class="form-group">
-				<label for="NumeroTelefono">*Número de Teléfono:</label>
+				<label for="NumeroTelefono">Número de Teléfono:</label>
 				<input type="text" class="form-control" id="NumeroTelefono" placeholder="Número de Teléfono" formControlName="NumeroTelefono" tabindex="2" (keydown.enter)="nextField('Correo')">
 				<div class="form-text text-danger" *ngIf="form.get('NumeroTelefono')?.touched && form.get('NumeroTelefono')?.invalid">
 				  <span *ngIf="form.get('NumeroTelefono')?.errors?.['required']">El teléfono es requerido.</span>
@@ -30,7 +30,7 @@
 		  <div class="row">
 			<div class="col-12">
 			  <div class="form-group">
-				<label for="Correo">*Correo Electrónico:</label>
+				<label for="Correo">Correo Electrónico:</label>
 				<input type="email" class="form-control" id="Correo" placeholder="Correo Electrónico" formControlName="Correo" tabindex="3" (keydown.enter)="nextField('Contraseña')">
 				<div class="form-text text-danger" *ngIf="form.get('Correo')?.touched && form.get('Correo')?.invalid">
 				  <span *ngIf="form.get('Correo')?.errors?.['required']">El correo es requerido.</span>
@@ -42,7 +42,7 @@
 		  <div class="row">
 			<div class="col-12">
 			  <div class="form-group">
-				<label for="Contraseña">*Contraseña:</label>
+				<label for="Contraseña">Contraseña:</label>
 				<input type="password" class="form-control" id="Contraseña" placeholder="Contraseña" formControlName="Contraseña" (keydown.enter)="submitForm()">
 				<div class="form-text text-danger" *ngIf="form.get('Contraseña')?.touched && form.get('Contraseña')?.invalid">
 				  <span *ngIf="form.get('Contraseña')?.errors?.['required']">La contraseña es requerida.</span>
