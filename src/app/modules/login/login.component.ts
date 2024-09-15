@@ -23,6 +23,7 @@ import { LoginService } from '@Services';
 export class LoginComponent {
   private fb = inject(FormBuilder);
   private loginService = inject(LoginService);
+  private LoginService = inject(LoginService);
   private dialog = inject(MatDialog);
 
   login = signal<LoginModel[]>([]);
