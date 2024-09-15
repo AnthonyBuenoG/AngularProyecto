@@ -1,101 +1,61 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <title>Login</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <link rel="stylesheet" href="https://unicons.iconscout.com/release/v2.1.9/css/unicons.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
-<link rel="stylesheet" href="css/styles.css">
-</head>
-<body>
-	<div class="section">
-		<div class="container">
-			<div class="row full-height justify-content-center">
-				<div class="col-12 text-center align-self-center py-5">
-					<div class="section pb-5 pt-5 pt-sm-2 text-center">
-						<h6 class="mb-0 pb-3"><span>Login </span><span>Sign Up</span></h6>
-			          	<input class="checkbox" type="checkbox" id="reg-log" name="reg-log"/>
-			          	<label for="reg-log"></label>
-						<div class="card-3d-wrap mx-auto">
-							<div class="card-3d-wrapper">
-								<div class="card-front">
-									<div class="center-wrap">
-										<div class="section text-center">
-											<h4 class="mb-4 pb-3">Login</h4>
-											<div class="form-group">
-												<input type="email" class="form-style" placeholder="Email" formControlName="Correo">
-												<div class="form-text text-danger text-left" *ngIf="form.get('Correo')?.touched && form.get('Correo')?.invalid">
-													<span *ngIf="form.get('Correo')?.errors?.['required']">El correo es requerido para ingresar*</span>
-												</div>
-												<i class="input-icon uil uil-at"></i>
-											</div>	
-											<div class="form-group mt-2">
-												<input type="password" class="form-style" placeholder="Password" formControlName="Contraseña">
-												<div class="form-text text-danger text-left" *ngIf="form.get('Contraseña')?.touched && form.get('Contraseña')?.invalid">
-													<span *ngIf="form.get('Contraseña')?.errors?.['required']">Contraseña requerida para ingresar*</span>
-												</div>
-												<i class="input-icon uil uil-lock-alt"></i>
-											</div>
-											<a href="home" class="btn mt-4">Login</a>
-				      					</div>
-			      					</div>
-			      				</div>
-								<div class="card-back">
-									<div class="center-wrap">
-										<div class="section text-center">
-											<h4 class="mb-3 pb-3">Sign Up</h4>
-											<div class="form-group">
-												<input type="text" class="form-style" placeholder="Name" formControlName="Nombres">
-												<div class="form-text text-danger text-left" *ngIf="form.get('Nombres')?.touched && form.get('Nombres')?.invalid">
-													<span *ngIf="form.get('Nombres')?.errors?.['required']">Nombre Usuario Requerido*</span>
-												</div>
-												<i class="input-icon uil uil-user"></i>
-											</div>	
-											<div class="form-group mt-2">
-												<input type="tel" class="form-style" placeholder="Phone Number" formControlName="NumeroTelefono">
-												<div class="form-text text-danger text-left" *ngIf="form.get('NumeorTelefono')?.touched && form.get('NumeroTelefono')?.invalid">
-													<span *ngIf="form.get('NumeroTelefono')?.errors?.['required']">Número de Telefono Requerido*</span>
-												</div>
-												<i class="input-icon uil uil-phone"></i>
-											</div>	
-                        					 <div class="form-group mt-2">
-												<input type="email" class="form-style" placeholder="Email" formControlName="Correo">
-												<div class="form-text text-danger text-left" *ngIf="form.get('Correo')?.touched && form.get('Correo')?.invalid">
-													<span *ngIf="form.get('Correo')?.errors?.['required']">Correo Requerido*</span>
-												</div>
-												<i class="input-icon uil uil-at"></i>
-											</div>
-											<div class="form-group mt-2">
-												<input type="password" class="form-style" placeholder="Password" formControlName="Contraseña">
-												<div class="form-text text-danger text-left" *ngIf="form.get('apPaterno')?.touched && form.get('Contraseña')?.invalid">
-													<span *ngIf="form.get('apPaterno')?.errors?.['required']">Contraseña Requerido*</span>
-												</div>
-												<i class="input-icon uil uil-lock-alt"></i>
-											</div>
-											<a href="login" class="btn mt-4">Register</a>
-				      					</div>
-			      					</div>
-			      				</div>
-			      			</div>
-			      		</div>
-			      	</div>
-		      	</div>
-	      	</div>
-	    </div>
-	</div>
-	<div class="row">
-		<div class="col-12">
-		  <app-custom-table
-			  keyRow="Id"
-			  [headers]="['Nombres', 'NumeorTelefono', 'Correo',  'Contraseña']"
-			  [keys]="['Nombres', 'NumeorTelefono', 'Correo',  'Contraseña']"
-			  [data]="loginList"
-			  [hasSearch]="true"
-			  [hasEdit]="true"
-			  [hasDelete]="true">
-		  </app-custom-table>
-		</div>
+<div class="d-flex justify-content-center align-items-center vh-100">
+	<div class="card card-primary" style="width: 40%;">
+	  <div class="card-header text-center">
+		<h3 class="card-title">Registro de Usuario</h3>
 	  </div>
-</body>
-</html>
+	  <form [formGroup]="form" novalidate (ngSubmit)="onSubmit()">
+		<div class="card-body">
+		  <div class="row">
+			<div class="col-12">
+			  <div class="form-group">
+				<label for="Nombres">*Nombres:</label>
+				<input type="text" class="form-control" id="Nombres" placeholder="Nombres" formControlName="Nombres"  tabindex="1" (keydown.enter)="nextField('NumeroTelefono')">
+				<div class="form-text text-danger" *ngIf="form.get('Nombres')?.touched && form.get('Nombres')?.invalid">
+				  <span *ngIf="form.get('Nombres')?.errors?.['required']">El nombre es requerido.</span>
+				</div>
+			  </div>
+			</div>
+		  </div>
+		  <div class="row">
+			<div class="col-12">
+			  <div class="form-group">
+				<label for="NumeroTelefono">*Número de Teléfono:</label>
+				<input type="text" class="form-control" id="NumeroTelefono" placeholder="Número de Teléfono" formControlName="NumeroTelefono" tabindex="2" (keydown.enter)="nextField('Correo')">
+				<div class="form-text text-danger" *ngIf="form.get('NumeroTelefono')?.touched && form.get('NumeroTelefono')?.invalid">
+				  <span *ngIf="form.get('NumeroTelefono')?.errors?.['required']">El teléfono es requerido.</span>
+				</div>
+			  </div>
+			</div>
+		  </div>
+		  <div class="row">
+			<div class="col-12">
+			  <div class="form-group">
+				<label for="Correo">*Correo Electrónico:</label>
+				<input type="email" class="form-control" id="Correo" placeholder="Correo Electrónico" formControlName="Correo" tabindex="3" (keydown.enter)="nextField('Contraseña')">
+				<div class="form-text text-danger" *ngIf="form.get('Correo')?.touched && form.get('Correo')?.invalid">
+				  <span *ngIf="form.get('Correo')?.errors?.['required']">El correo es requerido.</span>
+				  <span *ngIf="form.get('Correo')?.errors?.['email']">Formato de correo inválido.</span>
+				</div>
+			  </div>
+			</div>
+		  </div>
+		  <div class="row">
+			<div class="col-12">
+			  <div class="form-group">
+				<label for="Contraseña">*Contraseña:</label>
+				<input type="password" class="form-control" id="Contraseña" placeholder="Contraseña" formControlName="Contraseña" (keydown.enter)="submitForm()">
+				<div class="form-text text-danger" *ngIf="form.get('Contraseña')?.touched && form.get('Contraseña')?.invalid">
+				  <span *ngIf="form.get('Contraseña')?.errors?.['required']">La contraseña es requerida.</span>
+				  <span *ngIf="form.get('Contraseña')?.errors?.['minlength']">Debe tener al menos 8 caracteres.</span>
+				</div>
+			  </div>
+			</div>
+		  </div>
+		</div>
+		<div class="card-footer">
+			<button type="submit" class="btn btn-primary">Guardar</button>
+		  </div>
+	  </form>
+	</div>
+  </div>
+  

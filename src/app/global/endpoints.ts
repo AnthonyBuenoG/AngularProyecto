@@ -1,11 +1,14 @@
 import { environment } from './../../environments/environment';
 
-export const auth = {
-  login: `${environment.urlBase}SignIn`,
+export const login = {
+  Login: `${environment.urlBase}SignIn`,
+  insert: `${environment.urlBase}InsertLogin`,
 };
+
 
 export const authh = {
   signup: `${environment.urlBase}Signup`,
+  insert: `${environment.urlBase}InsertLogin`,
 };
 
 export const persons = {

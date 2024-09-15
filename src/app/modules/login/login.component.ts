@@ -5,6 +5,7 @@ import { CustomTableComponent } from '@Component/Table'
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { LoginModel, LoginInsertRequest } from 'src/app/core/models/login';
 import { LoginService } from '@Services';
+import { ElementRef, ViewChild } from '@angular/core';
 
 
 @Component({
@@ -26,6 +27,7 @@ export class LoginComponent {
   private LoginService = inject(LoginService);
   private dialog = inject(MatDialog);
 
+
   login = signal<LoginModel[]>([]);
   loginList: LoginModel[] = [];
 
@@ -45,6 +47,32 @@ export class LoginComponent {
         Correo: Correo,
         Contraseña: Contraseña,
       };
+      this.LoginService.insertLogin(request)
+      .subscribe({
+        next: (res) => {
+          const data = res;
+        },
+        error: (err) => {
+          console.log(err)
+          // this.toastr.error('Ha Ocurrido un Error', err);
+        }
+      });
+    } else {
+      this.form.markAllAsTouched();
+    }
     } 
-  }
+    nextField(nextFieldId: string) {
+      const nextElement = document.getElementById(nextFieldId);
+      if (nextElement) {
+        nextElement.focus();
+      }
+    }
+  
+    submitForm() {
+      if (this.form.valid) {
+        this.onSubmit(); // Llama a la función de envío directamente
+      } else {
+        this.form.markAllAsTouched(); // Muestra errores si hay campos inválidos
+      }
+    }
 }
