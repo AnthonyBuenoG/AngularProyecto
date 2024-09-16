@@ -36,25 +36,25 @@ export class LoginComponent {
         username: usuario,
         userpassword: password
       };
-      // this.auth.auth(request)
-      //   .subscribe({
-      //     next: (res) => {
-      //       console.log(res);
-      //       const data = res.response.data;
-      //       localStorage.setItem('token', data.Token);
-      //       localStorage.setItem('idUsuario', data.Usuario.Id.toString());
-      //       localStorage.setItem('usuario', data.Usuario.NombreUsuario);
-      //       localStorage.setItem('nombrePersona', data.Usuario.NombrePersona);
-      //       if (!localStorage.getItem('mode')) {
-      //         localStorage.setItem('mode', 'light');
-      //       }
-      //       this.router.navigate(['/home']);
-      //     },   
-      //     error: (err) => {
-      //             this.toastr.error('Ha Ocurrido un Error', err);
-      //     }
+      this.auth.auth(request)
+        .subscribe({
+          next: (res) => {
+            console.log(res);
+            const data = res.response.data;
+            localStorage.setItem('token', data.Token);
+            localStorage.setItem('idUsuario', data.Usuario.Id.toString());
+            localStorage.setItem('usuario', data.Usuario.NombreUsuario);
+            localStorage.setItem('nombrePersona', data.Usuario.NombrePersona);
+            if (!localStorage.getItem('mode')) {
+              localStorage.setItem('mode', 'light');
+            }
+            this.router.navigate(['/home']);
+          },   
+          error: (err) => {
+                  this.toastr.error('Ha Ocurrido un Error', err);
+          }
           
-      //   });
+        });
       this.auth.auth(request).subscribe({
         next: (res) => {
           const data = res.response.data;
@@ -75,24 +75,24 @@ export class LoginComponent {
           this.toastr.error('Ha Ocurrido un Error', err);
         }
       });                                     
-      // this.auth.auth(request)
-      //   .subscribe({
-      //     next: (res) => {
-      //       const data = res.response?.data;
-      //       console.log(res.response)
-      //       localStorage.setItem('token', data.Token);
-      //       localStorage.setItem('idUsuario', data.Usuario.Id.toString());
-      //       localStorage.setItem('usuario', data.Usuario.NombreUsuario);
-      //       localStorage.setItem('nombrePersona', data.Usuario.NombrePersona);
-      //       if(!localStorage.getItem('mode')){
-      //         localStorage.setItem('mode', 'light');
-      //       }
-      //       this.router.navigate(['/home']);
-      //     },
-      //     error: (err) => {
-      //       this.toastr.error('Ha Ocurrido un Error', err);
-      //     }
-      //   });
+      this.auth.auth(request)
+        .subscribe({
+          next: (res) => {
+            const data = res.response?.data;
+            console.log(res.response)
+            localStorage.setItem('token', data.Token);
+            localStorage.setItem('idUsuario', data.Usuario.Id.toString());
+            localStorage.setItem('usuario', data.Usuario.NombreUsuario);
+            localStorage.setItem('nombrePersona', data.Usuario.NombrePersona);
+            if(!localStorage.getItem('mode')){
+              localStorage.setItem('mode', 'light');
+            }
+            this.router.navigate(['/home']);
+          },
+          error: (err) => {
+            this.toastr.error('Ha Ocurrido un Error', err);
+          }
+        });
     } else {
       this.form.markAllAsTouched();
     }
