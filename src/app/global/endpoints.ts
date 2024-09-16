@@ -5,6 +5,10 @@ export const login = {
   insert: `${environment.urlBase}InsertLogin`,
 };
 
+export const registro = {
+  Registro: `${environment.urlBase}Registro`,
+  insert: `${environment.urlBase}InsertLogin`,
+};
 
 export const authh = {
   signup: `${environment.urlBase}Signup`,

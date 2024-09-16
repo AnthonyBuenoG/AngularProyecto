@@ -3,12 +3,17 @@ import { LoginComponent } from './modules/login/login.component';
 import { HomeComponent } from './layout/components/home/home.component';
 import { NotFoundComponent } from './layout/components/not-found/not-found.component';
 import { AuthGuard } from '@Guards';
+import { RegistroComponent } from './modules/registro/registro.component';
 //import { SignupComponent } from './modules/login/signup.component';
 
 export const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent
+  },
+  {
+    path: 'registro',
+    component: RegistroComponent
   },
   {
     path: 'home',
@@ -25,7 +30,7 @@ export const routes: Routes = [
 
   {
     path: '',
-    redirectTo: 'login',
+    redirectTo: 'registro',
     pathMatch: 'full'
   },
   {
