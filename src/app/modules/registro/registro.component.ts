@@ -26,8 +26,8 @@ export class RegistroComponent {
   private toastr = inject(ToastrService);
   
   form = this.fb.nonNullable.group({
-    Correo: ['svillarreal', [Validators.required]],
-    Contraseña: ['qK+qIzXDdvK4nsEOOuEk1g==', [Validators.required, Validators.minLength(6)]]
+    Correo: ['', [Validators.required]],
+    Contraseña: ['', [Validators.required, Validators.minLength(6)]]
   });
   onSubmit(): void {
     if (this.form.valid) {
@@ -42,7 +42,7 @@ export class RegistroComponent {
             console.log(res);
             const data = res.response.data;
             localStorage.setItem('Correo', data.Correo);
-            localStorage.setItem('Correo', data.Contraseña);
+            localStorage.setItem('Contraseña', data.Contraseña);
             if (!localStorage.getItem('mode')) {
               localStorage.setItem('mode', 'light');
             }

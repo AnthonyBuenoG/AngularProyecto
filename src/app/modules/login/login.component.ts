@@ -7,7 +7,6 @@ import { LoginModel, LoginInsertRequest } from 'src/app/core/models/login';
 import { LoginService } from '@Services';
 import { ElementRef, ViewChild } from '@angular/core';
 
-
 @Component({
   selector: 'app-alumnos',
   standalone: true,
@@ -27,7 +26,6 @@ export class LoginComponent {
   private LoginService = inject(LoginService);
   private dialog = inject(MatDialog);
 
-
   login = signal<LoginModel[]>([]);
   loginList: LoginModel[] = [];
 
@@ -36,11 +34,11 @@ export class LoginComponent {
     NumeroTelefono: ['', Validators.required],
     Correo: ['', [Validators.required]],
     Contraseña: ['', [Validators.required]],
-  })
+  });
 
   onSubmit(): void {
-    if (this.form.valid){
-      const { Nombres, NumeroTelefono, Correo, Contraseña} = this.form.getRawValue();
+    if (this.form.valid) {
+      const { Nombres, NumeroTelefono, Correo, Contraseña } = this.form.getRawValue();
       const request: LoginInsertRequest = {
         Nombres: Nombres,
         NumeroTelefono: NumeroTelefono,
@@ -48,31 +46,38 @@ export class LoginComponent {
         Contraseña: Contraseña,
       };
       this.LoginService.insertLogin(request)
-      .subscribe({
-        next: (res) => {
-          const data = res;
-        },
-        error: (err) => {
-          console.log(err)
-          // this.toastr.error('Ha Ocurrido un Error', err);
-        }
-      });
+        .subscribe({
+          next: (res) => {
+            const data = res;
+            this.clearForm(); // Limpiar el formulario después del éxito
+          },
+          error: (err) => {
+            console.log(err);
+            // this.toastr.error('Ha Ocurrido un Error', err);
+          }
+        });
     } else {
       this.form.markAllAsTouched();
     }
-    } 
-    nextField(nextFieldId: string) {
-      const nextElement = document.getElementById(nextFieldId);
-      if (nextElement) {
-        nextElement.focus();
-      }
+  }
+
+  nextField(nextFieldId: string) {
+    const nextElement = document.getElementById(nextFieldId);
+    if (nextElement) {
+      nextElement.focus();
     }
-  
-    submitForm() {
-      if (this.form.valid) {
-        this.onSubmit(); // Llama a la función de envío directamente
-      } else {
-        this.form.markAllAsTouched(); // Muestra errores si hay campos inválidos
-      }
+  }
+
+  submitForm() {
+    if (this.form.valid) {
+      this.onSubmit(); // Llama a la función de envío directamente
+    } else {
+      this.form.markAllAsTouched(); // Muestra errores si hay campos inválidos
     }
+  }
+
+  // Nueva función para limpiar el formulario
+  clearForm() {
+    this.form.reset(); // Restablece todos los campos del formulario a sus valores iniciales
+  }
 }

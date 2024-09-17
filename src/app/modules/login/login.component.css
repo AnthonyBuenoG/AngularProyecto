@@ -107,3 +107,15 @@ a
     color: #ff4d4d;
   }
   
+  
+/* Enlace "Registrarse" con efectos */
+a.text-light {
+  color: #FFD700; /* Color dorado */
+  transition: color 0.3s ease, transform 0.3s ease; /* Transición de color y de levantamiento */
+}
+
+a.text-light:hover {
+  color: #ffffff; /* Color blanco al pasar el cursor */
+  transform: translateY(-3px); /* Efecto de levantamiento al pasar el cursor */
+  text-decoration: underline; /* Subrayado al pasar el cursor */
+}
