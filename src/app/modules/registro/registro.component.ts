@@ -1,85 +1,101 @@
-import { NgFor, NgIf } from '@angular/common';
-import { Component, inject, signal, OnInit } from '@angular/core';
-import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { CustomTableComponent } from '@Component/Table';
-import { MatDialog, MatDialogModule } from '@angular/material/dialog';
-import { LoginInsertRequest } from 'src/app/core/models/login';  // Cambiado a LoginInsertRequest
+
+import { Component, inject } from '@angular/core';
+import { ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { NgIf } from '@angular/common';
+import { images } from '@Constants';
+import { ToastrService } from 'ngx-toastr';
+// Models //
+import { LoginRequest } from '@Models/Auth'
+// Services //
+import { LoginService } from '@Services';
 import { RegistroService } from 'src/app/core/services/registroService';
-import { Router } from '@angular/router'; // Importa Router para la redirección
-import { AuthService } from 'src/app/core/services/auth.service';
-import { RegistroInsertRequest } from 'src/app/core/models/registro';
-
+import { RegistroRequest } from 'src/app/core/models/registro';
 @Component({
-  selector: 'app-alumnos',
-  standalone: true,
-  imports: [
-    ReactiveFormsModule,
-    NgFor,
-    NgIf,
-    CustomTableComponent,
-    MatDialogModule
-  ],
+  selector: 'app-login',
   templateUrl: './registro.component.html',
-  styleUrls: ['./registro.component.css'] // Cambiado a styleUrls (plural) para que funcione correctamente
+  styleUrl: './registro.component.css',
+  standalone: true,
+  imports: [ReactiveFormsModule, NgIf]
 })
-export class RegistroComponent implements OnInit {
+export class RegistroComponent {
+  readonly images = images;
   private fb = inject(FormBuilder);
-  private registroService = inject(RegistroService);
-  private dialog = inject(MatDialog);
-  private router = inject(Router); // Inyecta el Router
-  private authService = inject(AuthService); // Inyecta el AuthService para validar las credenciales
-
-  registro = signal([]); // Uso correcto de signal sin tipo explícito
-  registroList: any[] = []; // Define la lista
-
-  // Definición del formulario con validaciones
+  private auth = inject(RegistroService);
+  private router = inject(Router);
+  private toastr = inject(ToastrService);
+  
   form = this.fb.nonNullable.group({
-    Correo: ['', [Validators.required, Validators.email]], // Validación de correo
-    Contraseña: ['', [Validators.required, Validators.minLength(6)]], // Validación de contraseña
+    Correo: ['svillarreal', [Validators.required]],
+    Contraseña: ['qK+qIzXDdvK4nsEOOuEk1g==', [Validators.required, Validators.minLength(6)]]
   });
-
-  ngOnInit(): void {
-    // Lógica de inicialización si es necesaria
-  }
-
   onSubmit(): void {
     if (this.form.valid) {
       const { Correo, Contraseña } = this.form.getRawValue();
-      const RegistroRequest: RegistroInsertRequest = {  // Usamos LoginInsertRequest en lugar de RegistroInsertRequest
+      const request: RegistroRequest = {
         Correo: Correo,
-        Contraseña: Contraseña,
+        Contraseña: Contraseña
       };
-
-      // Llama al servicio para validar las credenciales
-      this.authService.login(Correo, Contraseña).subscribe({
-        next: (response) => {
-          // Si la autenticación es exitosa
-          if (response.success) {
-            this.router.navigate(['/home']); // Redirige al home
-          } else {
-            alert('Correo o contraseña incorrectos');
+      this.auth.auth(request)
+        .subscribe({
+          next: (res) => {
+            console.log(res);
+            const data = res.response.data;
+            localStorage.setItem('Correo', data.Correo);
+            localStorage.setItem('Correo', data.Contraseña);
+            if (!localStorage.getItem('mode')) {
+              localStorage.setItem('mode', 'light');
+            }
+            this.router.navigate(['/home']);
+          },   
+          error: (err) => {
+                  this.toastr.error('Ha Ocurrido un Error', err);
           }
+          
+        });
+      this.auth.auth(request).subscribe({
+        next: (res) => {
+          const data = res.response.data;
+            console.log(data)
+            localStorage.setItem('Correo', data.Correo);
+            localStorage.setItem('Contraseña', data.Contraseña);
+            if (!localStorage.getItem('mode')) {
+              localStorage.setItem('mode', 'light');
+            }
+            this.router.navigate(['/home']);
+        
+            this.toastr.error('Respuesta inesperada de la API.');
+          
         },
-      });
+        error: (err) => {
+          this.toastr.error('Ha Ocurrido un Error', err);
+        }
+      });                                     
+      this.auth.auth(request)
+        .subscribe({
+          next: (res) => {
+            const data = res.response?.data;
+            console.log(res.response)
+            localStorage.setItem('Correo', data.Correo);
+            localStorage.setItem('Contraseña', data.Contraseña);
+            if(!localStorage.getItem('mode')){
+              localStorage.setItem('mode', 'light');
+            }
+            this.router.navigate(['/home']);
+          },
+          error: (err) => {
+            this.toastr.error('Ha Ocurrido un Error', err);
+          }
+        });
     } else {
-      this.form.markAllAsTouched(); // Marca todos los campos como tocados si no es válido
+      this.form.markAllAsTouched();
     }
+    
   }
-
-  // Función para enfocar el siguiente campo
   nextField(nextFieldId: string) {
     const nextElement = document.getElementById(nextFieldId);
     if (nextElement) {
       nextElement.focus();
-    }
-  }
-
-  // Enviar formulario
-  submitForm() {
-    if (this.form.valid) {
-      this.onSubmit(); // Llama a la función de envío directamente
-    } else {
-      this.form.markAllAsTouched(); // Muestra errores si hay campos inválidos
     }
   }
 }

@@ -8,9 +8,10 @@ export const login = {
 export const registro = {
   Registro: `${environment.urlBase}Registro`,
   insert: `${environment.urlBase}InsertLogin`,
+  
 };
 
-export const authh = {
+export const auth = {
   signup: `${environment.urlBase}Signup`,
   insert: `${environment.urlBase}InsertLogin`,
 };

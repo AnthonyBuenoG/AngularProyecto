@@ -12,7 +12,7 @@ interface RegistroResponseData {
 }
 interface Data {
     Correo: string;
-    Contrasela: string;
+    Contraseña: string;
 
 }
 
