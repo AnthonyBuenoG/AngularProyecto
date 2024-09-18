@@ -1,4 +1,7 @@
-
+.imageFondo {
+  background-image: url(../../../assets/dist/image/fondo.jpg);
+  background-size: cover;
+}
   
   /* Estilo del contenedor de la tarjeta */
   .card {
