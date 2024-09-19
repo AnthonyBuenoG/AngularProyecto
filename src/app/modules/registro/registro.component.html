@@ -30,7 +30,7 @@
 					<div class="input-group-prepend">
 					  <span class="input-group-text"><i class="fas fa-lock"></i></span>
 					</div>
-					<input type="password" class="form-control" id="Contraseña" placeholder="Correo Electrónico" formControlName="Contraseña" tabindex="3"  (keydown.enter)="nextField('Contraseña')">
+					<input type="password" class="form-control" id="Contraseña" placeholder="Contraseña" formControlName="Contraseña" tabindex="3"  (keydown.enter)="nextField('Contraseña')">
 				  </div>
 				<div class="form-text text-danger" *ngIf="form.get('Contraseña')?.touched && form.get('Contraseña')?.invalid">
 				  <span *ngIf="form.get('Contraseña')?.errors?.['required']">El correo es requerido.</span>
