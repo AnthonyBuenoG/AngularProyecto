@@ -4,11 +4,9 @@ import { ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgIf } from '@angular/common';
 import { images } from '@Constants';
-import { ToastrService } from 'ngx-toastr';
-// Models //
-import { LoginRequest } from '@Models/Auth'
-// Services //
-import { LoginService } from '@Services';
+import { AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr'; // Asegúrate de tener ngx-toastr instalado si lo usas
+
 import { RegistroService } from 'src/app/core/services/registroService';
 import { RegistroRequest } from 'src/app/core/models/registro';
 @Component({
@@ -27,7 +25,7 @@ export class RegistroComponent {
   
   form = this.fb.nonNullable.group({
     Correo: ['', [Validators.required]],
-    Contraseña: ['', [Validators.required, Validators.minLength(9)]]
+    Contraseña: ['', [Validators.required, Validators.minLength(10)]]
   });
   onSubmit(): void {
     if (this.form.valid) {

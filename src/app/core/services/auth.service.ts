@@ -8,13 +8,13 @@ import { RegistroResponse } from '../models/registro';
   providedIn: 'root'
 })
 export class RegistroService {
-  private apiUrl = ' https://localhost:5031';  // URL de tu API para login
+  private urlBase = ' https://localhost:5031';  // URL de tu API para login
 
   constructor(private http: HttpClient) {}
 
   // Método para iniciar sesión
   registro(credentials: RegistroInsertRequest): Observable<RegistroResponse> {
-    return this.http.post<RegistroResponse>(`${this.apiUrl}/registro`, credentials);
+    return this.http.post<RegistroResponse>(`${this.urlBase}/registro`, credentials);
 
   }
   }
