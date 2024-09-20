@@ -14,7 +14,7 @@
 					<div class="input-group-prepend">
 					  <span class="input-group-text"><i class="fas fa-envelope"></i></span>
 					</div>
-					<input type="email" class="form-control" id="correo" placeholder="Correo Electrónico" formControlName="Correo" tabindex="3"  (keydown.enter)="nextField('Contraseña')">
+					<input type="email" class="form-control" id="Correo" placeholder="Correo Electrónico" formControlName="Correo" tabindex="3"  (keydown.enter)="nextField('Contraseña')">
 				  </div>
 				<div class="form-text text-danger" *ngIf="form.get('Correo')?.touched && form.get('Correo')?.invalid">
 				  <span *ngIf="form.get('Correo')?.errors?.['required']">El correo es requerido.</span>

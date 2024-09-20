@@ -12,7 +12,7 @@ import { LoginService } from '@Services';
 import { RegistroService } from 'src/app/core/services/registroService';
 import { RegistroRequest } from 'src/app/core/models/registro';
 @Component({
-  selector: 'app-login',
+  selector: 'app-registro',
   templateUrl: './registro.component.html',
   styleUrl: './registro.component.css',
   standalone: true,
@@ -27,7 +27,7 @@ export class RegistroComponent {
   
   form = this.fb.nonNullable.group({
     Correo: ['', [Validators.required]],
-    Contraseña: ['', [Validators.required, Validators.minLength(20)]]
+    Contraseña: ['', [Validators.required, Validators.minLength(9)]]
   });
   onSubmit(): void {
     if (this.form.valid) {

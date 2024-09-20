@@ -7,7 +7,7 @@ import { RegistroResponse } from '../models/registro';
 @Injectable({
   providedIn: 'root'
 })
-export class AuthService {
+export class RegistroService {
   private apiUrl = ' https://localhost:5031';  // URL de tu API para login
 
   constructor(private http: HttpClient) {}
