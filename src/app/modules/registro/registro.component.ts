@@ -27,7 +27,7 @@ export class RegistroComponent {
   
   form = this.fb.nonNullable.group({
     Correo: ['', [Validators.required]],
-    Contraseña: ['', [Validators.required, Validators.minLength(6)]]
+    Contraseña: ['', [Validators.required, Validators.minLength(20)]]
   });
   onSubmit(): void {
     if (this.form.valid) {
