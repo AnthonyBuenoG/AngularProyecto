@@ -1,35 +1,37 @@
 import {ApiResponse} from '@Models/Response';
 
-//Modelo para insertar una nueva persona
 export interface PersonInsertRequest {
-    Nombre: string;
-    ApPaterno: string;
-    ApMaterno: string;
-    Direccion: string;
-}
-
-//Modelo para actualizar los datos de una persona
-export interface PersonUpdateRequest {
     Id: number;
+    IdUsuario: number;
     Nombre: string;
     ApPaterno: string;
     ApMaterno: string;
-    Direccion: string;
+    Perfil: number;
+    IdSede: number;
+    NombreUsuario?: string | null;
+    NombreSede?: string | null;
+    Usuario?: number;
+    Activo?: number;
+    Porcentaje: number;
 }
 
-export type GetPersonasResponse = ApiResponse<PersonaModel[]>;
+export type GetPersonasResponse = ApiResponse<GetPersonasResponseData>;
 
-// interface GetPersonasResponseData {
-//     persons: PersonaModel[];
-// }
-
+interface GetPersonasResponseData {
+    data: PersonaModel[];
+}
+  
 export interface PersonaModel {
     Id: number;
+    IdUsuario: number;
     Nombre: string;
     ApPaterno: string;
     ApMaterno: string;
-    Direccion:string;
-    Estatus: string;
-    UsuarioRegistra: string;
-    FechaRegistro:string;
+    Perfil: number;
+    IdSede: number;
+    NombreUsuario: string;
+    NombreSede: string;
+    Usuario: number;
+    Activo: number;
+    Porcentaje: number;
 }

@@ -1,83 +1,65 @@
-import { NgFor, NgIf } from '@angular/common';
-import { Component, inject, signal, OnInit } from '@angular/core';
-import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { CustomTableComponent } from '@Component/Table'
-import { MatDialog, MatDialogModule } from '@angular/material/dialog';
-import { LoginModel, LoginInsertRequest } from 'src/app/core/models/login';
-import { LoginService } from '@Services';
-import { ElementRef, ViewChild } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { NgIf } from '@angular/common';
+import { images } from '@Constants';
+import { ToastrService } from 'ngx-toastr';
+// Models //
+import { LoginRequest } from '@Models/Auth'
+// Services //
+import { LoginService } from 'src/app/core/services/login.service';
 
 @Component({
-  selector: 'app-alumnos',
-  standalone: true,
-  imports: [
-    ReactiveFormsModule,
-    NgFor,
-    NgIf,
-    CustomTableComponent,
-    MatDialogModule
-  ],
+  selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrl: './login.component.css'
+  styleUrl: './login.component.css',
+  standalone: true,
+  imports: [ReactiveFormsModule, NgIf]
 })
 export class LoginComponent {
+  readonly images = images;
+
   private fb = inject(FormBuilder);
-  private loginService = inject(LoginService);
-  private LoginService = inject(LoginService);
-  private dialog = inject(MatDialog);
-
-  login = signal<LoginModel[]>([]);
-  loginList: LoginModel[] = [];
-
+  private auth = inject(LoginService);
+  private router = inject(Router);
+  private toastr = inject(ToastrService);
+  
   form = this.fb.nonNullable.group({
-    Nombres: ['', Validators.required],
-    NumeroTelefono: ['', Validators.required],
-    Correo: ['', [Validators.required]],
-    Contraseña: ['', [Validators.required]],
+    usuario: ['', [Validators.required]],
+    password: ['', [Validators.required, Validators.minLength(6)]]
   });
 
   onSubmit(): void {
     if (this.form.valid) {
-      const { Nombres, NumeroTelefono, Correo, Contraseña } = this.form.getRawValue();
-      const request: LoginInsertRequest = {
-        Nombres: Nombres,
-        NumeroTelefono: NumeroTelefono,
-        Correo: Correo,
-        Contraseña: Contraseña,
+      const { usuario, password } = this.form.getRawValue();
+      const request: LoginRequest = {
+        username: usuario,
+        userpassword: password
       };
-      this.LoginService.insertLogin(request)
+      this.auth.auth(request)
         .subscribe({
           next: (res) => {
-            const data = res;
-            this.clearForm(); // Limpiar el formulario después del éxito
+            const data = res.Response.data;
+            localStorage.setItem('token', data.Token);
+            localStorage.setItem('idUsuario', data.Usuario.Id.toString());
+            localStorage.setItem('idPerfil', data.Usuario.IdPerfil.toString());
+            if(!localStorage.getItem('mode')){
+              localStorage.setItem('mode', 'light');
+            }
+            this.router.navigate(['/home']);
           },
           error: (err) => {
-            console.log(err);
-            // this.toastr.error('Ha Ocurrido un Error', err);
+            this.toastr.error('Ha Ocurrido un Error', err);
           }
         });
     } else {
       this.form.markAllAsTouched();
     }
   }
-
   nextField(nextFieldId: string) {
     const nextElement = document.getElementById(nextFieldId);
     if (nextElement) {
       nextElement.focus();
     }
-  }
-
-  submitForm() {
-    if (this.form.valid) {
-      this.onSubmit(); // Llama a la función de envío directamente
-    } else {
-      this.form.markAllAsTouched(); // Muestra errores si hay campos inválidos
-    }
-  }
-
-  // Nueva función para limpiar el formulario
-  clearForm() {
-    this.form.reset(); // Restablece todos los campos del formulario a sus valores iniciales
   }
 }

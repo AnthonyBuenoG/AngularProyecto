@@ -30,7 +30,7 @@ export const routes: Routes = [
 
   {
     path: '',
-    redirectTo: 'registro',
+    redirectTo: 'login',
     pathMatch: 'full'
   },
   {

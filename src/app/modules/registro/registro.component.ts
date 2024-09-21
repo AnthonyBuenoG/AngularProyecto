@@ -1,99 +1,84 @@
+import { NgFor, NgIf } from '@angular/common';
+import { Component, inject, signal, OnInit,  } from '@angular/core';
+import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { CustomTableComponent } from '@Component/Table'
+import { RegistroModel } from 'src/app/core/models/registro/registro-model';
+import { RegistroService } from 'src/app/core/services/registro.service';
+import { RegistroInsertRequest } from 'src/app/core/models/registro/registro-model';
+import { MatDialog } from '@angular/material/dialog';
+import { MatButtonModule } from '@angular/material/button';
 
-import { Component, inject } from '@angular/core';
-import { ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-import { NgIf } from '@angular/common';
-import { images } from '@Constants';
-import { AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
-import { ToastrService } from 'ngx-toastr'; // Asegúrate de tener ngx-toastr instalado si lo usas
-
-import { RegistroService } from 'src/app/core/services/registroService';
-import { RegistroRequest } from 'src/app/core/models/registro';
 @Component({
   selector: 'app-registro',
-  templateUrl: './registro.component.html',
-  styleUrl: './registro.component.css',
   standalone: true,
-  imports: [ReactiveFormsModule, NgIf]
+  imports: [
+    ReactiveFormsModule,
+    NgFor,
+    NgIf,
+    CustomTableComponent,
+    MatButtonModule
+  ],
+  templateUrl: './registro.component.html',
+  styleUrl: './registro.component.css'
 })
 export class RegistroComponent {
-  readonly images = images;
   private fb = inject(FormBuilder);
-  private auth = inject(RegistroService);
-  private router = inject(Router);
-  private toastr = inject(ToastrService);
-  
+  // private RegistroService = inject(RegistroService);
+  private RegistroService = inject(RegistroService);
+  private dailog = inject(MatDialog)
+
+  registro = signal<RegistroModel[]>([]);
+  registroList: RegistroModel[] = [];
+
   form = this.fb.nonNullable.group({
+    Nombres: ['', Validators.required],
+    NumeroTelefono: ['', Validators.required],
     Correo: ['', [Validators.required]],
-    Contraseña: ['', [Validators.required, Validators.minLength(10)]]
+    Contraseña: ['', [Validators.required]],
   });
+
   onSubmit(): void {
     if (this.form.valid) {
-      const { Correo, Contraseña } = this.form.getRawValue();
-      const request: RegistroRequest = {
+      const { Nombres, NumeroTelefono, Correo, Contraseña } = this.form.getRawValue();
+      const request: RegistroInsertRequest = {
+        Nombres: Nombres,
+        NumeroTelefono: NumeroTelefono,
         Correo: Correo,
-        Contraseña: Contraseña
+        Contraseña: Contraseña,
       };
-      this.auth.auth(request)
+      this.RegistroService.insertRegistro(request)
         .subscribe({
           next: (res) => {
-            console.log(res);
-            const data = res.response.data;
-            localStorage.setItem('Correo', data.Correo);
-            localStorage.setItem('Contraseña', data.Contraseña);
-            if (!localStorage.getItem('mode')) {
-              localStorage.setItem('mode', 'light');
-            }
-            this.router.navigate(['/home']);
-          },   
-          error: (err) => {
-                  this.toastr.error('Ha Ocurrido un Error', err);
-          }
-          
-        });
-      this.auth.auth(request).subscribe({
-        next: (res) => {
-          const data = res.response.data;
-            console.log(data)
-            localStorage.setItem('Correo', data.Correo);
-            localStorage.setItem('Contraseña', data.Contraseña);
-            if (!localStorage.getItem('mode')) {
-              localStorage.setItem('mode', 'light');
-            }
-            this.router.navigate(['/home']);
-        
-            this.toastr.error('Respuesta inesperada de la API.');
-          
-        },
-        error: (err) => {
-          this.toastr.error('Ha Ocurrido un Error', err);
-        }
-      });                                     
-      this.auth.auth(request)
-        .subscribe({
-          next: (res) => {
-            const data = res.response?.data;
-            console.log(res.response)
-            localStorage.setItem('Correo', data.Correo);
-            localStorage.setItem('Contraseña', data.Contraseña);
-            if(!localStorage.getItem('mode')){
-              localStorage.setItem('mode', 'light');
-            }
-            this.router.navigate(['/home']);
+            const data = res;
+            this.clearForm(); // Limpiar el formulario después del éxito
           },
           error: (err) => {
-            this.toastr.error('Ha Ocurrido un Error', err);
+            console.log(err);
+            // this.toastr.error('Ha Ocurrido un Error', err);
           }
         });
     } else {
       this.form.markAllAsTouched();
     }
-    
   }
+
   nextField(nextFieldId: string) {
     const nextElement = document.getElementById(nextFieldId);
     if (nextElement) {
       nextElement.focus();
     }
+  }
+
+  submitForm() {
+    if (this.form.valid) {
+      this.onSubmit(); // Llama a la función de envío directamente
+    } else {
+      this.form.markAllAsTouched(); // Muestra errores si hay campos inválidos
+    }
+  }
+
+  // Nueva función para limpiar el formulario
+  clearForm() {
+    this.form.reset(); // Restablece todos los campos del formulario a sus valores iniciales
   }
 }

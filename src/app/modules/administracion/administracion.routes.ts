@@ -8,31 +8,13 @@ export const routes: Routes = [
         children: [
             {
                 path: '',
-                redirectTo:'personas',
+                redirectTo:'login',
                 pathMatch:'full'
             },
-            {
-                path:'personas',
-                loadChildren: () => import('./pages/personas/personas.routes').then(m => m.routes),
-                title: 'App - Dashboard'
-            },
-            {
-                path:'alumnos',
-                loadChildren: () => import('./pages/alumnos/alumnos.routes').then(m => m.routes),
-                title: 'App - Dashboard'
-            },
-            {
-                path:'profesores',
-                loadChildren: () => import('./pages/profesores/profesores.routes').then(m => m.routes),
-                title: 'App - Dashboard'
-            },
            
            
-            {
-                path:'grupos',
-                loadChildren: () => import('./pages/grupos/grupos.routes').then(m => m.routes),
-                title: 'App - Dashboard'
-            },
+           
+         
            
          
            

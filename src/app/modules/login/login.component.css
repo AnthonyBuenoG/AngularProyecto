@@ -1,124 +1,203 @@
 .imageFondo {
-  background-image: url(../../../assets/dist/image/fondo.jpg);
-  background-size: cover;
+    background-image: url(../../../assets/dist/image/fondo.jpg);
+    background-size: cover;
 }
-  
-  /* Estilo del contenedor de la tarjeta */
+.imageFondo {
+    background-image: url(../../../assets/dist/image/fondo.jpg);
+    background-size: cover;
+  }
+    
+    /* Estilo del contenedor de la tarjeta */
+    .card {
+      background: rgba(0, 0, 0, 0.8);
+      border-radius: 10px;
+      border: 1px solid #444;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
+      color: #f5f5f5;
+    }
+    
+    /* Estilo de la cabecera de la tarjet/* Estilo del formulario */
   .card {
-    background: rgba(0, 0, 0, 0.8);
-    border-radius: 10px;
-    border: 1px solid #444;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
-    color: #f5f5f5;
+      background-color: #000000; /* Fondo negro */
+      border-radius: 10px;
+      box-shadow: 0 0 15px 5px rgba(255, 255, 255, 0.2); /* Resplandor blanco alrededor del formulario */
+      padding: 20px;
   }
   
-  /* Estilo de la cabecera de la tarjet/* Estilo del formulario */
-.card {
-    background-color: #000000; /* Fondo negro */
-    border-radius: 10px;
-    box-shadow: 0 0 15px 5px rgba(255, 255, 255, 0.2); /* Resplandor blanco alrededor del formulario */
-    padding: 20px;
-}
-
-.card-header {
-    background-color: #333333; /* Fondo oscuro para el encabezado */
-    color: #ffffff; /* Texto blanco */
-}
-
-.card-title {
-    color: #ffffff; /* Color blanco para el título */
-}
-
-/* Estilo de los campos de entrada */
-.input-group-text, .form-control {
-    background-color: #1c1c1c; /* Fondo oscuro para los inputs */
-    color: #ffffff; /* Texto blanco */
-    border: 1px solid #444444; /* Bordes oscuros */
-}
-
-/* Efecto de resplandor blanco al pasar por los inputs */
-.form-control:hover, .input-group-text:hover {
-    box-shadow: 0 0 10px 2px rgba(255, 255, 255, 0.5); /* Luz blanca sutil al pasar el cursor */
-    transition: box-shadow 0.3s ease;
-}
-
-/* Botón con estilo elegante */
-.btn-primary {
-    background-color: #444444; /* Color gris oscuro para el botón */
-    color: #ffffff; /* Texto blanco */
-    border: none;
-}
-
-.btn-primary:hover {
-    background-color: #555555; /* Color más claro al pasar el cursor */
-    box-shadow: 0 0 10px 2px rgba(255, 255, 255, 0.6); /* Luz blanca suave en el botón */
-    transition: background-color 0.3s ease, box-shadow 0.3s ease;
-}
-a 
   .card-header {
-    background: #333;
-    border-bottom: 1px solid #555;
-    color: #f5f5f5;
+      background-color: #333333; /* Fondo oscuro para el encabezado */
+      color: #ffffff; /* Texto blanco */
   }
   
   .card-title {
-    font-size: 1.5em;
-    font-weight: bold;
-  }
-  
-  /* Estilo del cuerpo de la tarjeta */
-  .card-body {
-    padding: 20px;
+      color: #ffffff; /* Color blanco para el título */
   }
   
   /* Estilo de los campos de entrada */
-  .input-group {
-    margin-bottom: 15px;
+  .input-group-text, .form-control {
+      background-color: #1c1c1c; /* Fondo oscuro para los inputs */
+      color: #ffffff; /* Texto blanco */
+      border: 1px solid #444444; /* Bordes oscuros */
   }
   
-  .form-control {
-    border-radius: 5px;
-    border: 1px solid #777;
-    background-color: #222;
-    color: #f5f5f5;
+  /* Efecto de resplandor blanco al pasar por los inputs */
+  .form-control:hover, .input-group-text:hover {
+      box-shadow: 0 0 10px 2px rgba(255, 255, 255, 0.5); /* Luz blanca sutil al pasar el cursor */
+      transition: box-shadow 0.3s ease;
   }
   
-  .form-control::placeholder {
-    color: #888;
-  }
-  
-  .input-group-text {
-    background: #444;
-    border: 1px solid #555;
-    color: #f5f5f5;
-  }
-  
+  /* Botón con estilo elegante */
   .btn-primary {
-    background-color: #FFD700; /* Dorado */
-    border: none;
-    color: #333;
-    font-weight: bold;
-    transition: background-color 0.3s ease;
+      background-color: #444444; /* Color gris oscuro para el botón */
+      color: #ffffff; /* Texto blanco */
+      border: none;
   }
   
   .btn-primary:hover {
-    background-color: #e5c100; /* Dorado oscuro */
+      background-color: #555555; /* Color más claro al pasar el cursor */
+      box-shadow: 0 0 10px 2px rgba(255, 255, 255, 0.6); /* Luz blanca suave en el botón */
+      transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  }
+  a 
+    .card-header {
+      background: #333;
+      border-bottom: 1px solid #555;
+      color: #f5f5f5;
+    }
+    
+    .card-title {
+      font-size: 1.5em;
+      font-weight: bold;
+    }
+    
+    /* Estilo del cuerpo de la tarjeta */
+    .card-body {
+      padding: 20px;
+    }
+    
+    /* Estilo de los campos de entrada */
+    .input-group {
+      margin-bottom: 15px;
+    }
+    
+    .form-control {
+      border-radius: 5px;
+      border: 1px solid #777;
+      background-color: #222;
+      color: #f5f5f5;
+    }
+    
+    .form-control::placeholder {
+      color: #888;
+    }
+    
+    .input-group-text {
+      background: #444;
+      border: 1px solid #555;
+      color: #f5f5f5;
+    }
+    
+    .btn-primary {
+      background-color: #FFD700; /* Dorado */
+      border: none;
+      color: #333;
+      font-weight: bold;
+      transition: background-color 0.3s ease;
+    }
+    
+    .btn-primary:hover {
+      background-color: #e5c100; /* Dorado oscuro */
+    }
+    
+    /* Mensajes de error */
+    .form-text.text-danger {
+      color: #ff4d4d;
+    }
+    /* Estilo del contenedor de la tarjeta */
+  .card {
+      background: rgba(0, 0, 0, 0.8);
+      border-radius: 10px;
+      border: 1px solid #444;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
+      color: #f5f5f5;
   }
   
-  /* Mensajes de error */
-  .form-text.text-danger {
-    color: #ff4d4d;
+  /* Estilo del formulario */
+  .card {
+      background-color: #000000; /* Fondo negro */
+      border-radius: 10px;
+      box-shadow: 0 0 15px 5px rgba(255, 255, 255, 0.2); /* Resplandor blanco alrededor del formulario */
+      padding: 20px;
   }
   
+  .card-header {
+      background-color: #333333; /* Fondo oscuro para el encabezado */
+      color: #ffffff; /* Texto blanco */
+  }
   
-/* Enlace "Registrarse" con efectos */
-a.text-light {
-  color: #FFD700; /* Color dorado */
-  transition: color 0.3s ease, transform 0.3s ease; /* Transición de color y de levantamiento */
-}
-
-a.text-light:hover {
-  color: #ffffff; /* Color blanco al pasar el cursor */
-  transform: translateY(-3px); /* Efecto de levantamiento al pasar el cursor */
-  text-decoration: underline; /* Subrayado al pasar el cursor */
-}
+  .card-title {
+      color: #ffffff; /* Color blanco para el título */
+  }
+  
+  /* Estilo de los campos de entrada */
+  .input-group-text, .form-control {
+      background-color: #1c1c1c; /* Fondo oscuro para los inputs */
+      color: #ffffff; /* Texto blanco */
+      border: 1px solid #444444; /* Bordes oscuros */
+  }
+  
+  /* Efecto de resplandor blanco al pasar por los inputs */
+  .form-control:hover, .input-group-text:hover {
+      box-shadow: 0 0 10px 2px rgba(255, 255, 255, 0.5); /* Luz blanca sutil al pasar el cursor */
+      transition: box-shadow 0.3s ease;
+  }
+  
+  /* Botón con estilo elegante */
+  .btn-primary {
+      background-color: #444444; /* Color gris oscuro para el botón */
+      color: #ffffff; /* Texto blanco */
+      border: none;
+      transition: background-color 0.3s ease, transform 0.1s ease; /* Efecto de transición para el hover y clic */
+  }
+  
+  /* Efecto hover en el botón */
+  .btn-primary:hover {
+      background-color: #555555; /* Color más claro al pasar el cursor */
+      box-shadow: 0 0 10px 2px rgba(255, 255, 255, 0.6); /* Luz blanca suave en el botón */
+  }
+  
+  /* Efecto de pulsación en el botón al hacer clic */
+  .btn-primary:active {
+      transform: scale(0.95); /* Efecto de reducción al presionar */
+      background-color: #666666; /* Color más oscuro cuando se hace clic */
+  }
+  
+  /* Efecto de transición al cambiar de página */
+  body.fade-out {
+      opacity: 0;
+      transition: opacity 0.5s ease-in-out;
+  }
+  
+  /* Enlace "Registrarse" con efectos */
+  a.text-light {
+      color: #FFD700; /* Color dorado */
+      transition: color 0.3s ease; /* Transición de color al pasar el cursor */
+  }
+  
+  a.text-light:hover {
+      color: #e5c100; /* Color dorado oscuro */
+      text-decoration: underline; /* Subrayado al pasar el cursor */
+  }
+  
+  /* Enlace "Registrarse" con efectos */
+  a.text-light {
+      color: #FFD700; /* Color dorado */
+      transition: color 0.3s ease, transform 0.3s ease; /* Transición de color y de levantamiento */
+  }
+  
+  a.text-light:hover {
+      color: #ffffff; /* Color blanco al pasar el cursor */
+      transform: translateY(-3px); /* Efecto de levantamiento al pasar el cursor */
+      text-decoration: underline; /* Subrayado al pasar el cursor */
+  }
+  

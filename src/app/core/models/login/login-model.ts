@@ -1,10 +1,8 @@
 import {ApiResponse} from '@Models/Response';
 
 export interface LoginRequest {
-    Nombres: string;
-    NumeroTelefono: string;
-    Correo: string;
-    Contraseña: string;
+    username: string;
+    userpassword: string;
 }
 
 export type LoginResponse = ApiResponse<LoginResponseData>;
@@ -12,23 +10,20 @@ export type LoginResponse = ApiResponse<LoginResponseData>;
 interface LoginResponseData {
     data: Data;
 }
+
 interface Data {
-    Nombres: String;
-    NumeroTelefono: string;
-    Correo: string;
-    Contrasela: string;
-
-
-}export interface LoginInsertRequest {
-    Nombres: string;
-    NumeroTelefono: string;
-    Correo: string;
-    Contraseña: string;
+    Status: boolean;
+    Mensaje: string;
+    Token: string;
+    Usuario: Usuario;
 }
   
-export interface LoginModel {
-    Nombres: string;
-    NumeroTelefono: string;
-    Correo: string;
-    Contraseña: string;
+export interface Usuario {
+    Id: number;
+    NombreUsuario: string;
+    NombrePersona: string;
+    IdSucursal: number;
+    NombreSucursal: string;
+    IdPerfil: number;
+    PctDescuento: number;
 }
